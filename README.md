@@ -1,6 +1,6 @@
 # iot_project
 
-프로젝트 주제: Factory automation system
+프로젝트 주제: Factory automation system</br>
 팀 소개: 심승환, 김예준
 사용되는 장비: raspberry pi, arduino, server motor, webcam, ir sensor
 
