@@ -4,7 +4,6 @@
 Servo base;
 Servo shoulder;
 Servo upperarm;
-Servo middlearm;
 Servo forearm;
 Servo gripper;
 
@@ -12,7 +11,6 @@ Servo gripper;
 int baseAngle = 90;
 int shoulderAngle = 90;
 int upperarmAngle = 90;
-int middlearmAngle = 90;
 int forearmAngle = 90;
 int gripperAngle = 90;
 
@@ -29,13 +27,10 @@ void setup() {
   upperarm.attach(6);
   upperarm.write(upperarmAngle);
 
-  middlearm.attach(7);
-  middlearm.write(middlearmAngle);
-
-  forearm.attach(8);
+  forearm.attach(7);
   forearm.write(forearmAngle);
 
-  gripper.attach(9);
+  gripper.attach(8);
   gripper.write(gripperAngle);
 
 }
@@ -45,10 +40,8 @@ void loop() {
   base.write(90);
   shoulder.write(90);
   upperarm.write(90);
-  middlearm.write(90);
   forearm.write(90);
   gripper.write(90);
-
   delay(2000); // 2초 대기
 }
 

@@ -4,7 +4,11 @@ from tkinter import ttk
 import time
 
 # 시리얼 통신 설정
-ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)  # COM 포트 확인 필요
+try:
+    ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
+except serial.SerialException:
+    print("Serial port not found. Please check the port.")
+    ser = None
 
 # GUI 설정
 root = tk.Tk()
@@ -17,15 +21,16 @@ frame.pack(padx=20, pady=20)
 
 # 각도 설정 함수
 def set_angles():
+    if not ser:
+        return
     base_angle = base_scale.get()
     shoulder_angle = shoulder_scale.get()
     upperarm_angle = upperarm_scale.get()
-    middlearm_angle = middlearm_scale.get()
     forearm_angle = forearm_scale.get()
     gripper_angle = gripper_scale.get()
     angles = (
         f"2a{int(base_angle)}b{int(shoulder_angle)}c{int(upperarm_angle)}"
-        f"d{int(middlearm_angle)}e{int(forearm_angle)}f{int(gripper_angle)}\n"
+        f"d{int(forearm_angle)}e{int(gripper_angle)}f\n"
     )
     ser.write(angles.encode())
 
@@ -35,17 +40,19 @@ recorded_actions = []
 def record_action():
     action = (
         base_scale.get(), shoulder_scale.get(), upperarm_scale.get(),
-        middlearm_scale.get(), forearm_scale.get(), gripper_scale.get()
+        forearm_scale.get(), gripper_scale.get()
     )
     recorded_actions.append(action)
     update_action_list()
 
 def execute_actions():
+    if not ser:
+        return
     for action in recorded_actions:
-        base_angle, shoulder_angle, upperarm_angle, middlearm_angle, forearm_angle, gripper_angle = action
+        base_angle, shoulder_angle, upperarm_angle, forearm_angle, gripper_angle = action
         angles = (
             f"2a{int(base_angle)}b{int(shoulder_angle)}c{int(upperarm_angle)}"
-            f"d{int(middlearm_angle)}e{int(forearm_angle)}f{int(gripper_angle)}\n"
+            f"d{int(forearm_angle)}e{int(gripper_angle)}f\n"
         )
         ser.write(angles.encode())
         time.sleep(3)
@@ -55,7 +62,6 @@ def reset_position():
     base_scale.set(90)
     shoulder_scale.set(90)
     upperarm_scale.set(90)
-    middlearm_scale.set(90)
     forearm_scale.set(90)
     gripper_scale.set(90)
     set_angles()
@@ -80,8 +86,8 @@ def show_selected_action(evt):
     selected_index = action_listbox.curselection()
     if selected_index:
         idx = int(selected_index[0])
-        base, sh, up, mid, fore, grip = recorded_actions[idx]
-        selected_action_label.config(text=f"B:{base}, S:{sh}, U:{up}, M:{mid}, F:{fore}, G:{grip}")
+        base, sh, up, fore, grip = recorded_actions[idx]
+        selected_action_label.config(text=f"B:{base}, S:{sh}, U:{up}, F:{fore}, G:{grip}")
 
 # 슬라이더 및 레이블 생성 함수
 def create_servo_control(label_text, row):
@@ -95,9 +101,8 @@ def create_servo_control(label_text, row):
 base_scale = create_servo_control("Base", 0)
 shoulder_scale = create_servo_control("Shoulder", 1)
 upperarm_scale = create_servo_control("Upperarm", 2)
-middlearm_scale = create_servo_control("Middlearm", 3)
-forearm_scale = create_servo_control("Forearm", 4)
-gripper_scale = create_servo_control("Gripper", 5)
+forearm_scale = create_servo_control("Forearm", 3)
+gripper_scale = create_servo_control("Gripper", 4)
 
 # 버튼들
 tk.Button(frame, text="Set Angles", command=set_angles).grid(row=6, columnspan=2, pady=5)

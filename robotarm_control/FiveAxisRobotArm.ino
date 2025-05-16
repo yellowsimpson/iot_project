@@ -1,12 +1,9 @@
-//6-axis_robotarm_control.py 코드 실행시킬때 아두이노에 넣어야되는 코드
-
 #include <Servo.h>
 
 // 서보 객체 선언
 Servo base;
 Servo shoulder;
 Servo upperarm;
-Servo middlearm;
 Servo forearm;
 Servo gripper;
 
@@ -17,9 +14,8 @@ void setup() {
   base.attach(3);
   shoulder.attach(5);
   upperarm.attach(6);
-  middlearm.attach(7);
-  forearm.attach(8);
-  gripper.attach(9);
+  forearm.attach(7);
+  gripper.attach(8);
 }
 
 void loop() {
@@ -29,15 +25,13 @@ void loop() {
     int baseAngle = parseAngle(command, 'a');
     int shoulderAngle = parseAngle(command, 'b');
     int upperarmAngle = parseAngle(command, 'c');
-    int middlearmAngle = parseAngle(command, 'd');
-    int forearmAngle = parseAngle(command, 'e');
-    int gripperAngle = parseAngle(command, 'f');
+    int forearmAngle = parseAngle(command, 'd');
+    int gripperAngle = parseAngle(command, 'e');
 
     // 각도 유효성 검사 및 적용
     if (baseAngle >= 0) base.write(baseAngle);
     if (shoulderAngle >= 0) shoulder.write(shoulderAngle);
     if (upperarmAngle >= 0) upperarm.write(upperarmAngle);
-    if (middlearmAngle >= 0) middlearm.write(middlearmAngle);
     if (forearmAngle >= 0) forearm.write(forearmAngle);
     if (gripperAngle >= 0) gripper.write(gripperAngle);
   }
