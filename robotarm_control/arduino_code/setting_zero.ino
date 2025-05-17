@@ -41,7 +41,7 @@ void loop() {
   shoulder.write(90);
   upperarm.write(90);
   forearm.write(90);
-  gripper.write(90);
+  gripper.write(0);
   delay(2000); // 2초 대기
 }
 
