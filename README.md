@@ -16,19 +16,30 @@
 주황: signal
 
 
-**터미널로 깃 올리고 내리기**
-git 파일 올리는 법
-$git add .
-$git commit -m '메시지 내용'
-$git push origin main(깃 올릴 barnch 이름)
+**터미널로 깃 올리고 내리기**</br>
+git 파일 올리는 법</br>
+$git add . </br>
+$git commit -m '메시지 내용' </br>
+$git push origin main(깃 올릴 barnch 이름) </br>
 
-git 파일 내려 받는 법
-git pull origin main*(깃에서 내려받을 barnch 이름)
+git 파일 내려 받는 법 </br>
+git pull origin main*(깃에서 내려받을 barnch 이름) </br>
 
-**vs code로 파일 올리는 방법**
-1.왼쪽에 있는 번튼 3번째꺼 클릭(전선 처럼 생긴거)
-2.변경 상항에 새로 생긴거 3번째에 (+) 모양 클릭 -> git add
-3.변경 내용에 적고싶은 내용 적기 -> git commit 
-4.커밋 오른쪽에 아래 방향 화살표 클릭
-5.커밋 및 푸쉬 클릭 -> git push
+**vs code로 파일 올리는 방법** </br>
+1.왼쪽에 있는 번튼 3번째꺼 클릭(전선 처럼 생긴거) </br>
+2.변경 상항에 새로 생긴거 3번째에 (+) 모양 클릭 -> git add </br>
+3.변경 내용에 적고싶은 내용 적기 -> git commit </br>
+4.커밋 오른쪽에 아래 방향 화살표 클릭 </br>
+5.커밋 및 푸쉬 클릭 -> git push </br>
+
+
+**회의록**</br>
+5/20 </br>
+다음 회의 시간: 화요일 11시</br>
+승환: 바닥 구멍 뚫기, 스텝모터 준비, 로봇암 수동 제어코드 수정, ir 센서 준비</br>
+예준: 제어문 제작 및 코드 작성, 물품 분류 통 준비</br>
+
+공동 작업: 전체적인 틀 완성</br>
+
+최종 발표 6/3 </br>
 
