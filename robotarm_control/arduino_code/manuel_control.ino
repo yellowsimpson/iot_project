@@ -3,7 +3,7 @@
 Servo base, shoulder, upperarm, forearm, gripper;
 
 int basepin = 3;
-int shoulderpin = 5;
+int shoulderpin = 4;
 int upperarmpin = 6;
 int forearmpin = 7;
 int gripperpin = 8;
