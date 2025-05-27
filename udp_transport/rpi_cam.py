@@ -10,6 +10,7 @@ picam2.start()
 
 while True:
     frame = picam2.capture_array()
+    frame = frame[::-1]
     cv2.imshow("RPi Camera Live", frame)
 
     if cv2.waitKey(1) == ord('q'):
