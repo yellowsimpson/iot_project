@@ -10,7 +10,7 @@ picam2.start()
 
 while True:
     frame = picam2.capture_array()
-    frame = frame[::-1]
+    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
     cv2.imshow("RPi Camera Live", frame)
 
     if cv2.waitKey(1) == ord('q'):
