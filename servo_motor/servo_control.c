@@ -9,9 +9,7 @@ void setup() {
 }
 
 void loop() {
-  myServo.write(0);    // 0도 위치로 이동
-  delay(1000);         // 1초 대기
-  myServo.write(90);   // 90도 위치로 이동
+  myServo.write(140);   // 90도 위치로 이동
   delay(1000);         // 1초 대기
   myServo.write(180);  // 180도 위치로 이동
   delay(1000);         // 1초 대기

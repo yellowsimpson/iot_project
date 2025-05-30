@@ -9,8 +9,8 @@ Servo gripper;
 
 // 초기 각도 설정 (모두 90도 = 중립 위치)
 int baseAngle = 90;
-int shoulderAngle = 90;
-int upperarmAngle = 90;
+int shoulderAngle = 95;
+int upperarmAngle = 100;
 int forearmAngle = 90;
 int gripperAngle = 90;
 
@@ -21,7 +21,7 @@ void setup() {
   base.attach(3);
   base.write(baseAngle);
 
-  shoulder.attach(5);
+  shoulder.attach(4);
   shoulder.write(shoulderAngle);
 
   upperarm.attach(6);
@@ -30,7 +30,7 @@ void setup() {
   forearm.attach(7);
   forearm.write(forearmAngle);
 
-  gripper.attach(8);
+  gripper.attach(9);
   gripper.write(gripperAngle);
 
 }
@@ -38,10 +38,10 @@ void setup() {
 void loop() {
   // 각 서보를 중립 위치로 이동 (원점 복원용)
   base.write(90);
-  shoulder.write(90);
-  upperarm.write(90);
+  shoulder.write(95);
+  upperarm.write(100);
   forearm.write(90);
-  gripper.write(0);
+  gripper.write(90);
   delay(2000); // 2초 대기
 }
 

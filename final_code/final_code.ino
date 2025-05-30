@@ -1,6 +1,7 @@
 #include <Servo.h>
 
 Servo base, shoulder, upperarm, forearm, gripper;
+const int irPin = 2;
 
 void setup() {
   Serial.begin(115200);
@@ -9,6 +10,7 @@ void setup() {
   upperarm.attach(6);
   forearm.attach(7);
   gripper.attach(9);
+  pinMode(irPin, INPUT);
 }
 
 void loop() {
@@ -26,9 +28,15 @@ void loop() {
     upperarm.write(c);
     forearm.write(d);
     
-    int gripperMapped = map(e, 0, 60, 90, 180); // 이 부분이 핵심
+    int gripperMapped = map(e, 0, 60, 90, 180);
     gripper.write(gripperMapped);
   }
+
+  // IR 센서 상태 읽고 전송
+  int irState = digitalRead(irPin);
+  Serial.print("ir:");
+  Serial.println(irState);
+  delay(100);  // 100ms 주기로 전송
 }
 
 int getValue(String data, char startChar, char endChar) {
@@ -37,6 +45,6 @@ int getValue(String data, char startChar, char endChar) {
   if (start > 0 && end > start) {
     return data.substring(start, end).toInt();
   } else {
-    return 90; // 기본값
+    return 90;
   }
 }
