@@ -6,13 +6,13 @@ from picamera2 import Picamera2
 
 # 아두이노와 시리얼 연결
 ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-time.sleep(2)  # 시리얼 초기화 대기
+time.sleep(2)
 
-# 색상 범위 정의 (HSV)
+# HSV 색상 범위 설정
 color_ranges = {
     'red': [
-        ((0, 120, 70), (10, 255, 255)),   # 빨강 범위 1
-        ((170, 120, 70), (180, 255, 255)) # 빨강 범위 2 (양쪽 끝)
+        ((0, 120, 70), (10, 255, 255)),
+        ((170, 120, 70), (180, 255, 255))
     ],
     'green': [((40, 70, 70), (80, 255, 255))],
     'blue': [((100, 150, 70), (140, 255, 255))],
@@ -25,7 +25,6 @@ def detect_color(frame):
         mask = np.zeros(hsv.shape[:2], dtype=np.uint8)
         for lower, upper in ranges:
             mask |= cv2.inRange(hsv, np.array(lower), np.array(upper))
-        # 검출된 픽셀 수가 일정 이상이면 색상 감지로 간주
         if cv2.countNonZero(mask) > 500:
             return color
     return None
@@ -41,7 +40,7 @@ while True:
             camera_on = True
             print("카메라 실행 중...")
 
-            # 카메라 실행
+            # 카메라 초기화
             picam2 = Picamera2()
             preview_config = picam2.create_preview_configuration()
             picam2.configure(preview_config)
@@ -57,14 +56,22 @@ while True:
                 detected = detect_color(frame)
                 if detected:
                     print(f"감지된 색상: {detected}")
-                    ser.write((detected + "\n").encode())  # 아두이노에 전송
-                    time.sleep(1)  # 중복 전송 방지
+                    ser.write((detected + "\n").encode())
+                    # 감지된 색상 표시
+                    cv2.putText(frame, f"Detected: {detected}", (30, 40), cv2.FONT_HERSHEY_SIMPLEX,
+                                1.0, (0, 255, 0), 2, cv2.LINE_AA)
+                    cv2.imshow("RPi Camera Live", frame)
+                    cv2.waitKey(1000)  # 1초 보여주고 종료
                     break
 
-                # 카메라 화면 보기
+                # 실시간 영상 출력 (색상 미감지 상태)
+                cv2.putText(frame, "Detecting...", (30, 40), cv2.FONT_HERSHEY_SIMPLEX,
+                            1.0, (255, 255, 255), 2, cv2.LINE_AA)
                 cv2.imshow("RPi Camera Live", frame)
+
                 if cv2.waitKey(1) == ord('q') or time.time() - start_time > 15:
-                    break  # 15초 후 자동 종료
+                    print("카메라 자동 종료 또는 수동 종료됨")
+                    break
 
             picam2.close()
             cv2.destroyAllWindows()
