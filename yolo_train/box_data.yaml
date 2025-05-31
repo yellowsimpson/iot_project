@@ -1,8 +1,0 @@
-names:
-  0: blue_box
-  1: red_box
-  2: green_box
-  3: yellow_box
-test: /box_data/test/
-train: /box_data/train/
-val: /box_data/valid/

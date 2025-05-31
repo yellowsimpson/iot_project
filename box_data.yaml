@@ -1,0 +1,11 @@
+path: /home/shim/github/iot_project/data
+
+train: train
+val: val
+test: test
+
+names:
+  0: blue_box
+  1: red_box
+  2: green_box
+  3: yellow_box
