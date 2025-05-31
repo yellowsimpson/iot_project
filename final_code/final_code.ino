@@ -7,9 +7,9 @@ void setup() {
   Serial.begin(115200);
   base.attach(3);
   shoulder.attach(4);
-  upperarm.attach(6);
-  forearm.attach(7);
-  gripper.attach(9);
+  upperarm.attach(5);
+  forearm.attach(6);
+  gripper.attach(7);
   pinMode(irPin, INPUT);
 }
 
