@@ -4,7 +4,7 @@ import time
 import os
 
 # 저장 폴더 설정
-save_dir = "/home/pi/github"
+save_dir = "/home/pi/github/iot_project/data_set"
 os.makedirs(save_dir, exist_ok=True)
 
 # 카메라 초기화
