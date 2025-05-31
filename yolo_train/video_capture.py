@@ -2,7 +2,7 @@ import cv2
 import os
 
 # 폴더 경로
-folder_path = r"C:\\Users\\shims\\Desktop\\school_datasets"
+folder_path = r"/home/pi/github/iot_project/data_set"
 
 # 해당 폴더 안의 모든 파일 리스트 가져오기
 all_files = os.listdir(folder_path)
