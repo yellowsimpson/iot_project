@@ -1,11 +1,8 @@
-path: /home/shim/github/iot_project/data
-
-train: train
-val: val
-test: test
-
 names:
   0: blue_box
   1: red_box
   2: green_box
   3: yellow_box
+test: C:\Users\shims\Desktop\github\iot_project\data\test
+train: C:\Users\shims\Desktop\github\iot_project\data\train
+val: C:\Users\shims\Desktop\github\iot_project\data\val
