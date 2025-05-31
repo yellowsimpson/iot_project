@@ -13,7 +13,7 @@ while True:
     frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
     cv2.imshow("RPi Camera Live", frame)
 
-    if cv2.waitKey(1) == ord('q'):
+    if cv2.waitKey(0) == ord('q'):
         break
 
 cv2.destroyAllWindows()
