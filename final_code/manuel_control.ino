@@ -4,11 +4,11 @@ Servo base, shoulder, upperarm, forearm, gripper;
 
 void setup() {
   Serial.begin(115200);
-  base.attach(3);
-  shoulder.attach(4);
+  base.attach(4);
+  shoulder.attach(5);
   upperarm.attach(6);
   forearm.attach(7);
-  gripper.attach(9);
+  gripper.attach(8);
 }
 
 void loop() {
