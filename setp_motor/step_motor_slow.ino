@@ -1,5 +1,5 @@
-#define STEP_PIN 3
-#define DIR_PIN 2
+#define STEP_PIN 2
+#define DIR_PIN 3
 
 // 모터/드라이버 설정
 #define STEPS_PER_REV 200   // 360도 = 200 스텝 (1.8도/step)

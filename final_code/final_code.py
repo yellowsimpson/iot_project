@@ -9,7 +9,7 @@ ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 time.sleep(2)
 
 # YOLO 모델 로드 (색상별 블록으로 학습된 커스텀 모델)
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt')  # 'best.pt'를 커스텀 모델로 교체
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='/home/shim/github/iot_project/train/weights/best.pt')  # 'best.pt'를 커스텀 모델로 교체
 model.conf = 0.5  # 탐지 신뢰도 기준
 
 # 카메라 상태
