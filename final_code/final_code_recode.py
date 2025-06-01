@@ -50,11 +50,11 @@ while True:
                     conf = float(result.conf[0])
                     label = model.names[cls_id]
 
-                    if label in ['red_block', 'blue_block', 'green_block', 'yellow_block']:
+                    if label in ['red_box', 'blue_box', 'green_box', 'yellow_box']:
                         print(f"[감지] 색상 블록: {label}")
 
                         # _block제거하고 아두이노에 전송
-                        color_name = label.replace("_block", "")
+                        color_name = label.replace("_box", "")
                         ser.write((color_name + "\n").encode())
                         detected_color = label
                         break
