@@ -1,5 +1,5 @@
-#define STEP_PIN 3
-#define DIR_PIN 2
+#define STEP_PIN 2
+#define DIR_PIN 3
 
 #define STEPS_PER_REV 200
 #define MICROSTEPS 1

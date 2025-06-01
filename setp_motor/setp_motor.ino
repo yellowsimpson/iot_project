@@ -1,5 +1,5 @@
-#define STEP_PIN 3
-#define DIR_PIN 2
+#define STEP_PIN 2
+#define DIR_PIN 3
 
 void setup() {
   pinMode(STEP_PIN, OUTPUT);
