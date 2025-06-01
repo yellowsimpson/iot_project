@@ -50,11 +50,12 @@ while True:
                     conf = float(result.conf[0])
                     label = model.names[cls_id]
 
-                    if label in ['red', 'blue', 'green', 'yellow']:
+                    if label in ['red_block', 'blue_block', 'green_block', 'yellow_block']:
                         print(f"[감지] 색상 블록: {label}")
 
-                        # 아두이노에 전송
-                        ser.write((label + "\n").encode())
+                        # _block제거하고 아두이노에 전송
+                        color_name = label.replace("_block", "")
+                        ser.write((color_name + "\n").encode())
                         detected_color = label
                         break
 
@@ -68,9 +69,6 @@ while True:
                     # 감지 후 1초 대기
                     cv2.waitKey(1000)
                     break
-
-                # 탐지 안내 텍스트 (자동 플롯 때문에 생략 가능)
-                # 만약 꼭 표시하고 싶으면 별도 오버레이 해야 함
 
                 if cv2.waitKey(1) == ord('q') or (time.time() - start_time) > 15:
                     print("[종료] 감지 시간 초과")
