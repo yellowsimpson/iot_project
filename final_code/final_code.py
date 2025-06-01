@@ -44,35 +44,31 @@ while True:
                 # YOLOv8 객체 탐지 수행
                 results = model(frame_bgr)[0]
 
+                # 탐지된 박스 중에서 조건에 맞는 블록 찾기
                 for result in results.boxes:
                     cls_id = int(result.cls[0])
                     conf = float(result.conf[0])
                     label = model.names[cls_id]
 
-                    if label in ['red', 'blue', 'green', 'yellow']:
+                    if label in ['red_box', 'blue_box', 'green_box', 'yellow_box']:
                         print(f"[감지] 색상 블록: {label}")
 
-                        # 아두이노에 전송
-                        ser.write((label + "\n").encode())
+                        # _block제거하고 아두이노에 전송
+                        color_name = label.replace("_box", "")
+                        ser.write((color_name + "\n").encode())
                         detected_color = label
-
-                        # 바운딩 박스 그리기
-                        x1, y1, x2, y2 = map(int, result.xyxy[0])
-                        cv2.rectangle(frame_bgr, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                        cv2.putText(frame_bgr, label, (x1, y1 - 10),
-                                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-
-                        cv2.imshow("YOLOv8 Detection", frame_bgr)
-                        cv2.waitKey(1000)
                         break
 
-                if detected_color:
-                    break
+                # YOLO가 자동으로 박스, 라벨을 그린 프레임 얻기
+                plotted_frame = results.plot()
 
-                # 탐지 안내 텍스트
-                cv2.putText(frame_bgr, "Detecting block...", (30, 40),
-                            cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-                cv2.imshow("YOLOv8 Detection", frame_bgr)
+                # 탐지 결과 화면에 표시
+                cv2.imshow("YOLOv8 Detection", plotted_frame)
+
+                if detected_color:
+                    # 감지 후 1초 대기
+                    cv2.waitKey(1000)
+                    break
 
                 if cv2.waitKey(1) == ord('q') or (time.time() - start_time) > 15:
                     print("[종료] 감지 시간 초과")
