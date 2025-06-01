@@ -9,7 +9,7 @@ ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 time.sleep(2)
 
 # YOLOv8 모델 로드 (색상별 블록으로 학습된 모델)
-model = YOLO('/home/shim/github/iot_project/train/weights/best.pt')  # best.pt는 여러분의 학습된 yolov8 모델
+model = YOLO('/home/pi/github/iot_project/yolo_train/train/weights/best.pt')  # best.pt는 여러분의 학습된 yolov8 모델
 model.conf = 0.5  # 신뢰도 기준 설정 (필요 시 조정)
 
 # 카메라 상태 플래그
