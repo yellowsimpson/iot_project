@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-#define SERVO_PIN     10   // 서보모터 제어 핀
+#define SERVO_PIN     9   // 서보모터 제어 핀
 #define IR_SENSOR_PIN 8   // IR 센서 디지털 출력 핀
 
 Servo myServo;
