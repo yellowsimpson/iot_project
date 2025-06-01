@@ -1,0 +1,4 @@
+ pip install torch torchvision
+ pip install pyserial
+ pip install opencv-python
+ sudo apt install -y python3-picamera2
