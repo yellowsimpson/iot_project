@@ -21,9 +21,9 @@ void rotateStepper(int steps, bool clockwise) {
   digitalWrite(DIR_PIN, clockwise ? HIGH : LOW);
   for (int i = 0; i < steps; i++) {
     digitalWrite(STEP_PIN, HIGH);
-    delayMicroseconds(800);  // 속도 조절
+    delayMicroseconds(2000);  // 속도 조절
     digitalWrite(STEP_PIN, LOW);
-    delayMicroseconds(800);
+    delayMicroseconds(2000);
   }
 }
 
@@ -61,22 +61,22 @@ void loop() {
     color.trim();
 
     if (color == "red") {
-      Serial.println("빨강 감지 → 위치 0으로 이동");
+      Serial.println("red detect → 위치 0으로 이동");
       moveTo(RED_POS);
     } else if (color == "green") {
-      Serial.println("초록 감지 → 위치 100으로 이동");
+      Serial.println("green detect→ 위치 100으로 이동");
       moveTo(GREEN_POS);
     } else if (color == "blue") {
-      Serial.println("파랑 감지 → 위치 200으로 이동");
+      Serial.println("blue detect→ 위치 200으로 이동");
       moveTo(BLUE_POS);
     } else if (color == "yellow") {
-      Serial.println("노랑 감지 → 위치 300으로 이동");
+      Serial.println("yellow detect→ 위치 300으로 이동");
       moveTo(YELLOW_POS);
     }
 
-    // 스텝핑 모터 동작 후 서보 모터 제어
-    delay(300);  // 모터 안정화
-    servo_door.write(90);
+    // 스텝핑 모터 동작 후 서보 모터(문)제어
+    delay(300);  // 스텝모터 안정화
+    servo_door.write(130);
     delay(500);
     servo_door.write(0);
     delay(500);
