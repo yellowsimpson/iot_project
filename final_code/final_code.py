@@ -23,6 +23,7 @@ while True:
 
         if line == "1" and not camera_on:
             print("[시작] 블록 탐지 시작")
+            time.sleep(1)
             camera_on = True
 
             # 카메라 설정
